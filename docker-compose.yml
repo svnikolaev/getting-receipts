@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  python_environment:
+    tty: true
+    build:
+      context: .
+      args:
+        HTTP_PROXY: ${HTTP_PROXY}
+        HTTPS_PROXY: ${HTTP_PROXY}
+    container_name: "getting_receipts"
+    restart: unless-stopped
+    environment:
+      http_proxy: ${HTTP_PROXY}
+      https_proxy: ${HTTP_PROXY}
+      HTTP_PROXY: ${HTTP_PROXY}
+      HTTPS_PROXY: ${HTTP_PROXY}
+    ports:
+      - "8080:80"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
